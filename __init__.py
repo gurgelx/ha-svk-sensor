@@ -1,0 +1,1 @@
+"""SVK frekvens sensor integration."""

@@ -1,0 +1,10 @@
+{
+    "domain": "svk_sensor",
+    "name": "Svenska kraftnät Sensor",
+    "documentation": "",
+    "dependencies": [],
+    "codeowners": [],
+    "requirements": ["requests>=2.25.1", "json"],
+    "iot_class": "local_polling",
+    "version": "0.1.0"
+}
