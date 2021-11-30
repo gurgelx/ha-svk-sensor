@@ -19,9 +19,10 @@ class SVKSensor(Entity):
         self.currentHz = 0
         self._measurements = []
         self.next_update = 0
+        self.intervall = 60
 
     def poll_svk(self):
-        ticks = int(time.time() - 900)
+        ticks = int(time.time() - self.intervall)
         url = "https://www.svk.se/services/statnett/v1/frequency/bysecondwithxy?frominticks=" + \
             str(ticks)
         r = requests.get(url)
@@ -59,6 +60,6 @@ class SVKSensor(Entity):
         """Fetch new state data for the sensor."""
         if self.next_update < time.time():
             self.poll_svk()
-            self.next_update = time.time() + 300  # schedule next update in 5 min
+            self.next_update = time.time() + self.intervall  # schedule next update
 
         self._state = self.currentHz
