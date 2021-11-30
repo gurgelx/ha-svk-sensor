@@ -49,6 +49,12 @@ class SVKSensor(Entity):
         """Returns the measurements."""
         return self._measurements
 
+    @property
+    def device_state_attributes(self) -> dict:
+        return {
+            "measurements": self.measurements
+        }
+
     def update(self):
         """Fetch new state data for the sensor."""
         if self.next_update < time.time():
