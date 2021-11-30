@@ -45,9 +45,9 @@ class SVKSensor(Entity):
         return "Hz"
 
     @property
-    def measuerements(self):
+    def measurements(self):
         """Returns the measurements."""
-        return self.measuerements
+        return self.measurements
 
     def update(self):
         """Fetch new state data for the sensor."""
