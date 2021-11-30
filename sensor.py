@@ -17,7 +17,7 @@ class SVKSensor(Entity):
         """Initialize the sensor."""
         self._state = None
         self.currentHz = 0
-        self.measurements = []
+        self._measurements = []
         self.next_update = 0
 
     def poll_svk(self):
@@ -26,28 +26,28 @@ class SVKSensor(Entity):
             str(ticks)
         r = requests.get(url)
         data = json.loads(r.text)
-        self.measurements = data['Measurements']
-        self.currentHz = float(self.measurements[-1][1])
+        self._measurements = data['Measurements']
+        self.currentHz = float(self._measurements[-1][1])
 
-    @property
+    @ property
     def name(self):
         """Return the name of the sensor."""
         return 'Svenska kraftnät'
 
-    @property
+    @ property
     def state(self):
         """Return the state of the sensor."""
         return self._state
 
-    @property
+    @ property
     def unit_of_measurement(self):
         """Return the unit of measurement."""
         return "Hz"
 
-    @property
+    @ property
     def measurements(self):
         """Returns the measurements."""
-        return self.measurements
+        return self._measurements
 
     def update(self):
         """Fetch new state data for the sensor."""
